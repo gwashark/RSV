@@ -27,23 +27,13 @@ def convert(vidPath: str, config: dict={
         
         cap = cv2.VideoCapture()
         cap.open(str(path))
-        if config["fps"] is int:
-            cap.set(cv2.CAP_PROP_FPS, config["fps"])
-        else:
-            cap.set(cv2.CAP_PROP_FPS, 60)
-        frame_count = 0
-        ret, frame = cap.read()
         os.mkdir(os.path.join(os.getcwd(), tempDir, "frames"))
-        frame_interval = int(cap.get(cv2.CAP_PROP_FPS))
-        while ret:
-            frame_path = os.path.join(os.getcwd(), tempDir, "frames", f"{frame_count}.png")
-            cv2.imwrite(frame_path, frame)
-            for _ in range(frame_interval - 1):
-                ret, _ = cap.read()
-                if not ret:
-                    break
-            ret, frame = cap.read()
-            frame_count += 1
+        success, image = cap.read()
+        count = 0
+        while success:
+            cv2.imwrite(f"{tempDir}/frames/{count:04d}.jpg", image)     # Save frame as JPEG file
+            success, image = cap.read()
+            count += 1
         cap.release()
 
         if config["width"] > 1024 or config["height"] > 1024:

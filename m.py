@@ -1,6 +1,6 @@
 import Vid2Lua
 
-Vid2Lua.convert("video.mp4", {
+Vid2Lua.convert("{your video path}", {
     "fps": 60,
     "width": 512,
     "height": 256,
