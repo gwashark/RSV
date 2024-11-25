@@ -1,3 +1,4 @@
+# Roblox to Video
 Don't want to pay **1000 Robux** per video? Want to upload more than **3 Videos in 30 days**? 
 
 This repository enables anyone to create **unlimited** amount of videos for **FREE**!
@@ -7,18 +8,33 @@ This repository enables anyone to create **unlimited** amount of videos for **FR
 1. Make the following hierarchy in **Roblox Studio**:
     1. Make a folder in `Replicated Storage` called `Modules`
     2. In `Modules`, add a **module script** called `Videos`
-```
-- Replicated Storage
-  - Modules    (folder)
-    - Videos   (module script)
-```
+    ```
+    - Replicated Storage
+      - Modules    (folder)
+        - Videos   (module script)
+    ```
+
+    Visual Example:
+
+    ![Alt text](READMEAssets/Setup.png)
 
 2. Copy [`Videos.luau`](https://github.com/Py-mon/Free-Roblox-Studio-Video/blob/main/Videos.luau) and paste it into the `Videos` module script.
+
+    Visual Example:
+
+    ![Alt text](READMEASSETS/ModuleScript.png)
+
 3. Install Python: [Video Tutorial](https://m.youtube.com/watch?v=8cAEH1i_5s0&pp=ygUII2plbm5qaWU%3D) (Get python 3.11)
-3. Install **LUASprites** in the command line.
+
+# Convert a Video
+In a Command Line, run these in your terminal:
+```bash
+git clone https://github.com/gwashark/RSV.git
+cd RSV
+pip install -r requirements.txt
 ```
-pip install LUASprites
-```
+
+
 
 ## Add a Video
 1. Get your desired video into a folder with all the frames (make all the size of the frames less than 1024x1024)
