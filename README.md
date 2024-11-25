@@ -34,7 +34,21 @@ cd RSV
 pip install -r requirements.txt
 ```
 
+And then the magic comes in! Run:
+```bash
+python vid2lua.py [Your video path] [Name] [FPS]
+```
 
+Example
+```bash
+python vid2lua.py "C:\Users\hello\Downloads\mov_bbb.mp4" vid2lua
+```
+
+and it should give you this result:
+```
+Your Script is ready!
+Your script is located at vid2lua.luau
+```
 
 ## Add a Video
 1. Get your desired video into a folder with all the frames (make all the size of the frames less than 1024x1024)

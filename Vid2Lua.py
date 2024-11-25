@@ -2,6 +2,7 @@ import os, pathlib, cv2, time, shutil
 
 from colorama import Fore
 from PIL import Image
+from sys import argv
 
 def convert(vidPath: str, config: dict={
     "fps": 60,
@@ -11,7 +12,7 @@ def convert(vidPath: str, config: dict={
     "name": "vid2lua"
 }):
     try:
-        path = pathlib.Path(os.getcwd() + vidPath)
+        path = pathlib.Path(vidPath)
         tempDir = config["tempDir"] or "V2LTemp"
 
         if not os.path.isfile(path):
@@ -279,7 +280,7 @@ def convert(vidPath: str, config: dict={
         outputFolder = getOutputFolder(tempDir)
         packImages(trees, name, '.')
         generateLuaOutput(1, name, trees, outputFolder)
-        source_code = outputFolder + "/outlua.lua"
+        source_code = outputFolder + "/" + name + ".lua"
         with open(source_code, "r") as f:
             code = f.read()
 
@@ -299,7 +300,22 @@ def convert(vidPath: str, config: dict={
 
         with open(f"{name}.luau", "w") as f:
             f.write(code)
+        shutil.rmtree(os.getcwd() + "/" + tempDir)
         return pathlib.Path(f"{name}.luau")
-    except Exception:
-        shutil.rmtree(tempDir)
-        return None
+    except Exception as Error:
+        if os.path.exists(os.getcwd() + "/" + tempDir):
+            shutil.rmtree(os.getcwd() + "/" + tempDir)
+        raise Error
+    
+if __name__ == "__main__":
+    args = argv[1:]
+    if len(args) != 1:
+        print("Usage: python3 Vid2Lua.py <path to video> ")
+        exit(1)
+    videoPath = args[0]
+    res = convert(videoPath)
+    if not res == None:
+        print("Your Script is ready!")
+        print(f"Your script is located at {res}")
+    else:
+        print("Something went wrong!")

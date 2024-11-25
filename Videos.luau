@@ -1,6 +1,5 @@
 local Video = {}
 
-
 function Video.new(size)
 	local video = {}
 
@@ -42,7 +41,5 @@ function Video.play(video, fps, surface)
 		end
 	end)
 end
-
-
 
 return Video
